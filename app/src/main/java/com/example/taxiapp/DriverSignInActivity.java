@@ -38,6 +38,13 @@ public class DriverSignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_sign_in);
 
+        mAuth = FirebaseAuth.getInstance();
+
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(DriverSignInActivity.this,
+                    DriverMapsActivity.class));
+        }
+
         textInputEmail = findViewById(R.id.textInputEmail);
         textInputName = findViewById(R.id.textInputName);
         textInputPassword = findViewById(R.id.textInputPassword);
@@ -45,8 +52,6 @@ public class DriverSignInActivity extends AppCompatActivity {
 
         loginSignUpButton = findViewById(R.id.loginSignUpButton);
         toggleLoginSignUpTextView = findViewById(R.id.toggleLoginSightUpTextView);
-
-        mAuth = FirebaseAuth.getInstance();
     }
 
     private boolean validateEmail() {
